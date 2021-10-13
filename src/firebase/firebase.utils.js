@@ -15,6 +15,35 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+  // Note that you must use uid and not id
+  // this must have changed recently since
+  // course says to use id.
+  console.log(userAuth.uid);
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  // console.log((await userRef.get()).exists);
+  const snap = await userRef.get();
+  // check if user exists -- if not then create
+  if (!snap.exists) {
+    const { displayName, email } = userAuth;
+    const createDate = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createDate,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log('error creating user', error.message);
+    }
+  }
+
+  return userRef;
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
