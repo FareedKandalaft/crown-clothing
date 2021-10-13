@@ -20,7 +20,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   // Note that you must use uid and not id
   // this must have changed recently since
   // course says to use id.
-  console.log(userAuth.uid);
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   // console.log((await userRef.get()).exists);
   const snap = await userRef.get();
