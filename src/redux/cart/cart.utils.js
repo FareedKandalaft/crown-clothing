@@ -7,7 +7,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     return cartItems.map((cartItem) =>
       cartItem.id === cartItemToAdd.id
         ? // Why does cartItem.quantity++ never increment?
-          { ...cartItem, quantity: cartItem.quantity + 1 }
+          { ...cartItem, quantity: ++cartItem.quantity }
         : cartItem
     );
   } else {
