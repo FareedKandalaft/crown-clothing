@@ -6,6 +6,12 @@ import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import './header.styles.scss';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import {
+  selectCartHidden,
+  selectCartItems,
+} from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selector';
 
 const Header = ({ currentUser, hidden }) => {
   return (
@@ -36,10 +42,18 @@ const Header = ({ currentUser, hidden }) => {
   );
 };
 
-// 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+// Using createStructuredSelector from
+// reselect you avoid verbose repetion
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
+
+// This is without createStructuredSelector
+// note the repetition of passing state
+// const mapStateToProps = (state) => ({
+//   currentUser: selectCurrentUser(state),
+//   hidden: selectCartHidden(state),
+// });
 
 export default connect(mapStateToProps)(Header);
