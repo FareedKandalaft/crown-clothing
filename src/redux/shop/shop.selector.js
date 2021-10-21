@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
-
+// Gets a particular reducer from rootReducer
 const selectShop = (state) => state.shop;
 
-export const selectShopItems = createSelector(
+export const selectCollections = createSelector(
   [selectShop],
-  (shop) => shop.items
+  (shop) => shop.collections
 );
