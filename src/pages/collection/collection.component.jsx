@@ -9,6 +9,7 @@ const CollectionPage = ({ collection }) => {
   return (
     <div className='collection'>
       <h2>COLLECTION PAGE</h2>
+      <h3>{collection.title}</h3>
     </div>
   );
 };
