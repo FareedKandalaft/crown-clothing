@@ -13,14 +13,6 @@ import { selectCurrentUser } from './redux/user/user.selector';
 import { createStructuredSelector } from 'reselect';
 
 class App extends React.Component {
-  // constructor() {
-  //   super();
-
-  //   this.state = {
-  //     currentUser: null,
-  //   };
-  // }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
