@@ -13,6 +13,12 @@ import {
 } from '../../firebase/firebase.utils';
 
 class ShopPage extends React.Component {
+  // React knows to imply super() when
+  // you are just setting state
+  state = {
+    loading: true,
+  };
+
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
@@ -22,6 +28,7 @@ class ShopPage extends React.Component {
       async (snapshot) => {
         const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
         updateCollections(collectionsMap);
+        this.setState({ loading: false });
       }
     );
   }
