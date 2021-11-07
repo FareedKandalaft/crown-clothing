@@ -9,7 +9,8 @@ export const selectCollections = createSelector(
 
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  (collections) => Object.keys(collections).map((key) => collections[key])
+  (collections) =>
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
 // By changing the underlying shop data to a keyed hash from an array
@@ -17,9 +18,8 @@ export const selectCollectionsForPreview = createSelector(
 // this also allows you much faster access to the collection data if
 // it were to grow very large and you had to do a search
 export const selectCollection = memoize((collectionUrlParam) =>
-  createSelector(
-    [selectCollections],
-    (collections) => collections[collectionUrlParam]
+  createSelector([selectCollections], (collections) =>
+    collections ? collections[collectionUrlParam] : null
   )
 );
 
