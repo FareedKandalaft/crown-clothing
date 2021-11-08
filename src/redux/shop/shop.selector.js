@@ -17,10 +17,24 @@ export const selectCollectionsForPreview = createSelector(
 // of collections you can access the data without the need of a Key_map
 // this also allows you much faster access to the collection data if
 // it were to grow very large and you had to do a search
-export const selectCollection = memoize((collectionUrlParam) =>
+// export const selectCollection = memoize((collectionUrlParam) =>
+//   createSelector([selectCollections], (collections) =>
+//     collections ? collections[collectionUrlParam] : null
+//   )
+// );
+export const selectCollection = (collectionUrlParam) =>
   createSelector([selectCollections], (collections) =>
     collections ? collections[collectionUrlParam] : null
-  )
+  );
+
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching
+);
+
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  (shop) => !!shop.collections
 );
 
 // export const selectCollection = memoize((collectionUrlParam) =>
