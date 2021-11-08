@@ -52,7 +52,7 @@ class ShopPage extends React.Component {
         <Route
           path={`${match.path}/:collectionId`}
           render={(props) => (
-            <CollectionPreview isLoading={loading} {...props} />
+            <CollectionPageWithSpinner isLoading={loading} {...props} />
           )}
         />
       </div>
